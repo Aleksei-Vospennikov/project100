@@ -14,8 +14,6 @@ struct Continuous_servo {
     }
 
     void Rotate(int speed) {
-        int delay_time = 1000;
-
         cont_servo_.write(speed);
     }
 };

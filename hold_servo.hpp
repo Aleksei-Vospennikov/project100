@@ -1,6 +1,7 @@
 #ifndef HOLD_SERVO_HPP
 #define HOLD_SERVO_HPP
 
+#include <assert.h>
 #include <Servo.h>
 
 namespace project {
@@ -19,7 +20,14 @@ struct Hold_servo {
         hold_servo_.attach(hold_servo_pin);
     }
 
+    void set_start_position() {
+
+    }
+
     void Rotate(int original_angle, AngleRange angles) {
+        assert ((original_angle > angles.right_bound) &&
+                (original_angle < angles.left_bound));
+
         int delay_time = 10;
 
         hold_servo_.write(
