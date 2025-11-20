@@ -3,12 +3,6 @@
 
 namespace project {
 
-enum class turn_on_mode {
-    off,
-    on,
-    number_modes,
-};
-
 struct Button {
     int pin_;
 
