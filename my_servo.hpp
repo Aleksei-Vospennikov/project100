@@ -7,13 +7,12 @@ const int cont_servo_pin = 9;
 const int hold_servo_pin = 10;
 
 struct AngleRange {
-  int  left_bound_;
-  int right_bound_;
-  int angle_step_;
+    int left_bound_;
+    int right_bound_;
+    int angle_step_;
 };
 
 void ContinuousServoTest();
-
 
 void HoldAngleServoTest(int speed);
 void HoldAngleServoRotate(int original_angle, AngleRange angles);
