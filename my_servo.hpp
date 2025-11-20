@@ -13,7 +13,7 @@ struct AngleRange {
 };
 
 void ContinuousServoTest();
-void ContinuousServoRotate();
+
 
 void HoldAngleServoTest(int speed);
 void HoldAngleServoRotate(int original_angle, AngleRange angles);

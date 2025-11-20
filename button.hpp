@@ -6,13 +6,9 @@ struct Button {
     bool status_{false};
 
     Button(int pin) : pin_{pin} {}
-    bool get_button_status() const {
-        return status_;
-    }
+    bool get_button_status() const { return status_; }
 
-    void update_button_status() {
-        status_ = digitalRead(pin_);
-    }
+    void update_button_status() { status_ = digitalRead(pin_); }
 };
 
 #endif // BUTTON_HPP

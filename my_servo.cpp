@@ -26,7 +26,7 @@ void HoldAngleServoTest() {
 
 void HoldAngleServoRotate(int original_angle, AngleRange_t angles) {
   int delay_time = 10;
-  
+
   holdServo.write(0);               // ??? servo must begin with the original angle remained from the last usage
 
   for (int angle = original_angle; angle <= angles.right_bound; angle += angles.angle_step) {
@@ -40,8 +40,4 @@ void HoldAngleServoRotate(int original_angle, AngleRange_t angles) {
   }
 }
 
-void ContinuousServoRotate(int speed) {
-  int delay_time = 1000;
-  
-  contServo.write(speed);
-}
+
