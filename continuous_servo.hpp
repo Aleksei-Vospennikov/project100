@@ -5,12 +5,18 @@
 
 struct Continuous_servo {
     Servo cont_servo_;
+    int cont_servo_pin_;
 
-    void ContinuousServoRotate(int speed) {
+    Continuous_servo(int cont_servo_pin) :
+        cont_servo_pin_{cont_servo_pin} {
+        cont_servo_.attach(cont_servo_pin);
+    }
+
+    void Rotate(int speed) {
         int delay_time = 1000;
 
-        contServo.write(speed);
+        cont_servo_.write(speed);
     }
-}
+};
 
 #endif // CONTINUOUS_SERVO_HPP
