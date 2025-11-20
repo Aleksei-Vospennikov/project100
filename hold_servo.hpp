@@ -1,8 +1,8 @@
 #ifndef HOLD_SERVO_HPP
 #define HOLD_SERVO_HPP
 
-#include <assert.h>
 #include <Servo.h>
+#include <assert.h>
 
 namespace project {
 
@@ -20,20 +20,19 @@ struct Hold_servo {
         hold_servo_.attach(hold_servo_pin);
     }
 
-    void set_start_position() {
-
-    }
+    void set_start_position() {}
 
     void Rotate(int original_angle, AngleRange angles) {
-        assert ((original_angle > angles.right_bound) &&
-                (original_angle < angles.left_bound));
+        assert((original_angle > angles.right_bound) &&
+               (original_angle < angles.left_bound));
 
         int delay_time = 10;
 
-        hold_servo_.write(
-            0); // ??? servo must begin with the original angle remained from the last usage
+        hold_servo_.write(0); // ??? servo must begin with the original angle
+                              // remained from the last usage
 
-        for (int angle = original_angle; angle <= angles.right_bound; angle += angles.angle_step) {
+        for (int angle = original_angle; angle <= angles.right_bound;
+             angle += angles.angle_step) {
             hold_servo_.write(angle);
             delay(delay_time);
         }

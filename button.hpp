@@ -12,9 +12,7 @@ enum class turn_on_mode {
 struct Button {
     int pin_;
 
-    Button(int pin) : pin_{pin} {
-        pinMode(pin_, INPUT_PULLUP);
-    }
+    Button(int pin) : pin_{pin} { pinMode(pin_, INPUT_PULLUP); }
 
     int get_button_status() const {
         auto button_state = digitalRead(pin_);
