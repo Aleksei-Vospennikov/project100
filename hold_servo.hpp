@@ -3,6 +3,8 @@
 
 #include <Servo.h>
 
+namespace project {
+
 struct AngleRange {
     int left_bound;
     int right_bound;
@@ -35,5 +37,7 @@ struct Hold_servo {
         }
     }
 };
+
+} // namespace project
 
 #endif // HOLD_SERVO_HPP

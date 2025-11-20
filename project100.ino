@@ -6,6 +6,8 @@
 const int cont_servo_pin = 9;
 const int hold_servo_pin = 10;
 
+using namespace project;
+
 Continuous_servo contServo{cont_servo_pin};
 Hold_servo holdServo{hold_servo_pin};
 
@@ -27,5 +29,5 @@ void loop() {
   contServo.Rotate(cont_speed);
 
   int driving_speed = 255;
-  motors.DrivingMotorsRotate(driving_speed);
+  motors.Rotate(driving_speed);
 }

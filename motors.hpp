@@ -1,6 +1,8 @@
 #ifndef MOTORS_HPP
 #define MOTORS_HPP
 
+namespace project {
+
 struct DrivingPin {
     int entrance_;
     int mode1_;
@@ -28,10 +30,12 @@ struct Motors {
            int second_m2)
         : first_{first_entr, first_m1, first_m2}, second_(second_entr, second_m1, second_m2) {}
 
-    void DrivingMotorsRotate(int speed) {
+    void Rotate(int speed) {
         first_.DrivingMotorRotate(speed);
         second_.DrivingMotorRotate(speed);
     }
 };
+
+} // namespace project
 
 #endif // MOTORS_HPP

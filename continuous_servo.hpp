@@ -3,6 +3,8 @@
 
 #include <Servo.h>
 
+namespace project {
+
 struct Continuous_servo {
     Servo cont_servo_;
     int cont_servo_pin_;
@@ -17,5 +19,7 @@ struct Continuous_servo {
         cont_servo_.write(speed);
     }
 };
+
+} // namespace project
 
 #endif // CONTINUOUS_SERVO_HPP
