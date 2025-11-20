@@ -26,9 +26,10 @@ struct Motors {
     DrivingPin first_;
     DrivingPin second_;
 
-    Motors(int first_entr, int first_m1, int first_m2, int second_entr, int second_m1,
-           int second_m2)
-        : first_{first_entr, first_m1, first_m2}, second_(second_entr, second_m1, second_m2) {}
+    Motors(int first_entr, int first_m1, int first_m2, int second_entr,
+           int second_m1, int second_m2)
+        : first_{first_entr, first_m1, first_m2},
+          second_(second_entr, second_m1, second_m2) {}
 
     void Rotate(int speed) {
         first_.DrivingMotorRotate(speed);

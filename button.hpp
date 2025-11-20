@@ -5,12 +5,13 @@ namespace project {
 
 struct Button {
     int pin_;
-    bool status_{false};
 
-    Button(int pin) : pin_{pin} {}
-    bool get_button_status() const { return status_; }
+    Button(int pin) : pin_{pin} { pinMode(pin_, INPUT_PULLUP); }
 
-    void update_button_status() { status_ = digitalRead(pin_); }
+    int get_button_status() const {
+        auto button_state = digitalRead(pin_);
+        return button_state;
+    }
 };
 
 } // namespace project
