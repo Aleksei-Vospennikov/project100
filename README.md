@@ -1,6 +1,6 @@
 # Project ping pong training 
 
-[ПП](https://github.com/)
+[our "ПП"](https://github.com/Aleksei-Vospennikov/project100/blob/main/Tennis_robot_PP.pdf)
 
 by Б01-405 team:
 
