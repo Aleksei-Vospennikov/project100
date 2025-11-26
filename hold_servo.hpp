@@ -12,18 +12,17 @@ struct AngleRange {
 };
 
 struct Hold_servo {
-private:
+  private:
     Servo hold_servo_;
     int hold_servo_pin_;
     int current_angle_ = 90;
     bool direction_up_ = true; // true - up, false - down
     unsigned long last_update_ = 0;
-public:
+
+  public:
     Hold_servo(int hold_servo_pin) : hold_servo_pin_{hold_servo_pin} {}
 
-    void begin() {
-       hold_servo_.attach(hold_servo_pin_);
-    }
+    void begin() { hold_servo_.attach(hold_servo_pin_); }
 
     void set_start_position() {}
 
