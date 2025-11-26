@@ -2,7 +2,6 @@
 #define HOLD_SERVO_HPP
 
 #include <Servo.h>
-#include <assert.h>
 
 namespace project {
 
@@ -13,35 +12,42 @@ struct AngleRange {
 };
 
 struct Hold_servo {
+private:
     Servo hold_servo_;
     int hold_servo_pin_;
+    int current_angle_ = 90;
+    bool direction_up_ = true; // true - up, false - down
+    unsigned long last_update_ = 0;
+public:
+    Hold_servo(int hold_servo_pin) : hold_servo_pin_{hold_servo_pin} {}
 
-    Hold_servo(int hold_servo_pin) : hold_servo_pin_{hold_servo_pin} {
-        hold_servo_.attach(hold_servo_pin);
+    void begin() {
+       hold_servo_.attach(hold_servo_pin_);
     }
 
     void set_start_position() {}
 
-    void Rotate(int original_angle, AngleRange angles) {
-        assert((original_angle > angles.right_bound) &&
-               (original_angle < angles.left_bound));
+    void update_sweep(AngleRange range, unsigned long interval_ms = 30) {
+        unsigned long now = millis();
+        if (now - last_update_ < interval_ms)
+            return;
 
-        int delay_time = 10;
-
-        hold_servo_.write(0); // ??? servo must begin with the original angle
-                              // remained from the last usage
-
-        for (int angle = original_angle; angle <= angles.right_bound;
-             angle += angles.angle_step) {
-            hold_servo_.write(angle);
-            delay(delay_time);
+        if (direction_up_) {
+            current_angle_ += range.angle_step;
+            if (current_angle_ >= range.right_bound) {
+                current_angle_ = range.right_bound;
+                direction_up_ = false;
+            }
+        } else {
+            current_angle_ -= range.angle_step;
+            if (current_angle_ <= range.left_bound) {
+                current_angle_ = range.left_bound;
+                direction_up_ = true;
+            }
         }
 
-        for (int angle = angles.right_bound; angle >= angles.left_bound;
-             angle -= angles.angle_step) {
-            hold_servo_.write(angle);
-            delay(delay_time);
-        }
+        hold_servo_.write(current_angle_);
+        last_update_ = now;
     }
 };
 

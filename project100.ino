@@ -1,5 +1,3 @@
-#include <stdio.h>
-
 #include "motors.hpp"
 #include "button.hpp"
 #include "continuous_servo.hpp"
@@ -23,10 +21,16 @@ Button button_mode{button_mode_pin};
 
 Motors motors{3, 4, 5, 6, 7, 8};
 
-void setup() {}
+void setup() {
+  holdServo.begin();
+  contServo.begin();
+}
 
 void loop() {
-#ifndef WITHOUT_MODES
+#ifdef WITHOUT_MODES
+AngleRange angles = {30, 150, 5};
+holdServo.update_sweep(angles, 25);
+#else
     if (!handle_turn_on_button(button_turn_on, holdServo))
         return;
 
@@ -38,21 +42,16 @@ void loop() {
             break;
         }
         case Play_mode::low_random: {
-            int  original_angle = 60;
             AngleRange angles = {75, 105, 1};
-            holdServo.Rotate(original_angle, angles);
+            holdServo.update_sweep(angles, 30);
             break;
         }
         case Play_mode::high_random: {
-#endif
-            int  original_angle = 60;
             AngleRange angles = {60, 120, 1};
-            holdServo.Rotate(original_angle, angles);
-#ifndef WITHOUT_MODES
+            holdServo.update_sweep(angles, 25);
             break;
         }
         default: {
-            printf ("Unknown play_mode: <%d>\n", play_mode);
             exit(0);
         }
     }
