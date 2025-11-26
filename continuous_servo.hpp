@@ -9,9 +9,9 @@ struct Continuous_servo {
     Servo cont_servo_;
     int cont_servo_pin_;
 
-    Continuous_servo(int cont_servo_pin) : cont_servo_pin_{cont_servo_pin} {
-        cont_servo_.attach(cont_servo_pin);
-    }
+    Continuous_servo(int cont_servo_pin) : cont_servo_pin_{cont_servo_pin} {}
+
+    void begin() { cont_servo_.attach(cont_servo_pin_); }
 
     void Rotate(int speed) { cont_servo_.write(speed); }
 };
